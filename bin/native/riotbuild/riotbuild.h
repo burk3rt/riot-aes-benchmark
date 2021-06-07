@@ -9,7 +9,7 @@
 #define MCU_NATIVE "native"
 #define RIOT_MCU MCU_NATIVE
 #define NDEBUG 1
-#define RIOT_VERSION "2021.07-devel-301-g3ad85"
+#define RIOT_VERSION "2021.07-devel-308-g41bbaf"
 #define MODULE_AUTO_INIT 1
 #define MODULE_BOARD 1
 #define MODULE_CORE 1
