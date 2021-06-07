@@ -26,5 +26,7 @@ int main(void)
     od_hex_dump(input, AES_BLOCK_SIZE, 0);
     printf("Ciphertext: \t");
     od_hex_dump(output, AES_BLOCK_SIZE, 0);
+    printf("Decypher: \t");
+    od_hex_dump(input, AES_BLOCK_SIZE, 0);
     return 0;
 }
