@@ -4,7 +4,7 @@
 
 #include "crypto/aes.h"
 #include "crypto/ciphers.h"
-#include "od.h"
+#include "RIOT/sys/include/od.h"
 
 int main(void)
 {
@@ -20,11 +20,11 @@ int main(void)
         0x73, 0x35, 0x75, 0x38,
         0x78, 0x2F, 0x41, 0x3F
     };
-    cipher_init(&cipher, CIPHER_AES_128, key, AES_KEY_SIZE_128);
+    cipher_init(&cipher, CIPHER_AES_128, key, AES_KEY_SIZE);
     cipher_encrypt(&cipher, input, output);
     printf("Klartext: \t");
-    od_hex_dump_ext(input, AES_BLOCK_SIZE, 0, 0);
+    od_hex_dump(input, AES_BLOCK_SIZE, 0);
     printf("Ciphertext: \t");
-    od_hex_dump_ext(output, AES_BLOCK_SIZE, 0, 0);
+    od_hex_dump(output, AES_BLOCK_SIZE, 0);
     return 0;
 }
