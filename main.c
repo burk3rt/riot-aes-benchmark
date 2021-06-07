@@ -22,11 +22,12 @@ int main(void)
     };
     cipher_init(&cipher, CIPHER_AES_128, key, AES_KEY_SIZE);
     cipher_encrypt(&cipher, input, output);
-    printf("Klartext: \t");
+    printf("Plaintext: \t");
     od_hex_dump(input, AES_BLOCK_SIZE, 0);
     printf("Ciphertext: \t");
     od_hex_dump(output, AES_BLOCK_SIZE, 0);
-    printf("Decypher: \t");
+    printf("Decrypted text: \t");
+    cipher_decrypt(&cipher, output, input);
     od_hex_dump(input, AES_BLOCK_SIZE, 0);
     return 0;
 }
