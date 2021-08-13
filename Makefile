@@ -9,9 +9,11 @@ RIOTBASE ?= $(CURDIR)/RIOT
 
 USEMODULE += shell_commands # RIOT SHELL COMMANDS
 USEMODULE += shell 			# RIOT SHELL MODULE
-USEMODULE += crypto_aes		# AES Library
+USEMODULE += crypto_aes_128		# AES Library
 USEMODULE += od				# Object Dump
 USEMODULE += od_string		# OD as String
+
+CFLAGS += -DDEVELHELP=1
 
 #Appends target specific values to variables
 include $(RIOTBASE)/Makefile.include
