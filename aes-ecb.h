@@ -1,9 +1,11 @@
 #ifndef AES_ECB_H
 #define AES_ECB_H
 
-#define AES_ECB_EXEC(MESSAGE, FUNCTION)
+#include "random.h"
+#include <stdio.h>
+#include "xtimer.h"
 
-void executeAesEcb(char * message);
+ void executeAesEcb(char * message, int currentRound, FILE* file);
 
 
 /*uint8_t setupAESInput(void);
