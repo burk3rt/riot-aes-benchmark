@@ -5,13 +5,13 @@
 #include "time.h"
 
 
-#define ROUNDS 1000
-#define MESSAGE_LENGTH 1000
+#define ROUNDS 100
+#define MESSAGE_LENGTH 100
 
 int main(void)
 {
     printf("Number of rounds: %d\n", ROUNDS);
-    FILE* filePointer = createBenchmarkFile("aes-ecb-256");
+    FILE* filePointer = createBenchmarkFile("aes-ecb-128");
     for(int round = 1; round <= ROUNDS; round++){
         char* message = (char*)malloc(MESSAGE_LENGTH * sizeof(char) + 1);
         generateMessage(message, MESSAGE_LENGTH);

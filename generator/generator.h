@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define BENCHMARK_RESULTS_DIR "benchmarkResults/"
+#define BENCHMARK_RESULTS_DIR "benchmarkResultsTemp/"
 
 void generateMessage(char* messageStorage, int messageLength);
 FILE* createBenchmarkFile(char* name);

@@ -4,7 +4,7 @@
 #include "aes-ecb.h"
 #include "generator/generator.h"
 
-#define KEY_SIZE AES_KEY_SIZE_256
+#define KEY_SIZE AES_KEY_SIZE_128
 
 void executeAesEcb(char* message, int currentRound, FILE* filePointer) {
     cipher_t cipher;

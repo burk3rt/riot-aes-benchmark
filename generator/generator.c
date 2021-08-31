@@ -4,7 +4,6 @@
 #include <stdio.h>
 
 void generateMessage(char* messageStorage, int messageLength){
-    srand(time(0));
     char charset[] = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     for(int index = 0; index < messageLength; index++){
         messageStorage[index] = charset[(rand() % (int) (sizeof charset - 1))];
