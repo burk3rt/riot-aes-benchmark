@@ -1,25 +1,26 @@
-#include "aes-ecb.h"
+#include "algorithms/aes-ecb.h"
+#include "algorithms/aes-cbc.h"
 #include <stdio.h>
 #include <stdint.h>
-#include "generator/generator.h"
 #include "time.h"
+#include "string.h"
 
 
 #define ROUNDS 1000
-#define MESSAGE_LENGTH 100
+#define MESSAGE_LENGTH 34 // in BYTES
+#define KEY_SIZE 16 // in BYTES
+#define ECB_MODE 0 // 0=OFF, 1=ON
 
 int main(void)
 {
-    printf("Starting Benchmark ...\nNumber of rounds: %d\nWordlength: %d", ROUNDS, MESSAGE_LENGTH);
-    FILE* filePointer = createBenchmarkFile("aes-ecb-128");
-    for(int round = 1; round <= ROUNDS; round++){
-        char* message = (char*)malloc(MESSAGE_LENGTH * sizeof(char) + 1);
-        generateMessage(message, MESSAGE_LENGTH);
-        //printf("Round %d of %d\nMessage to encrypt/decrypt: %s\n", round, ROUNDS, message);
-        executeAesEcb(message, round, filePointer);
-        free(message);
+    printf("Starting Benchmark ...\nNUMBER OF ROUNDSs: %d\nWORDLENGTH: %d BYTES\n", ROUNDS, MESSAGE_LENGTH);
+    if(ECB_MODE){
+        printf("Mode: ELECTRONIC CODEBOOK\n");
+        executeAesEcb(ROUNDS, KEY_SIZE, MESSAGE_LENGTH);
+    } else {
+        printf("Mode: CIPHER BLOCKER CHAINING");
+        executeAesCbc(ROUNDS, KEY_SIZE, MESSAGE_LENGTH);
     }
     printf("Benchmark done!\n");
-    fclose(filePointer);
     return 0;
 }
