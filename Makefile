@@ -30,7 +30,7 @@ ifneq ($(AES_KEY_SIZE),192)
   USEMODULE += crypto_aes_192	# AES Library
 endif
 ifneq ($(AES_KEY_SIZE),256)
-  USEMODULE += crypto_aes_256	# AES Library
+  UUSEMODULE += crypto_aes_256	# AES Library
 endif
 
 CFLAGS += -DDEVELHELP=1

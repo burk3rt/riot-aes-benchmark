@@ -24,19 +24,19 @@ void executeAesCbc(int numberOfRounds, int keySize, size_t messageLength){
         uint32_t _benchmark_time_encryption = xtimer_now_usec();
         cipher_encrypt_cbc(&cipher, iv, input, total, output);
         _benchmark_time_encryption = (xtimer_now_usec() - _benchmark_time_encryption);
-        /*printf("Plaintext: \t");
+        printf("Plaintext: \t");
         od_hex_dump(input, AES_BLOCK_SIZE, 0);
         printf("Ciphertext: \t");
         od_hex_dump(output, AES_BLOCK_SIZE, 0);
-        printf("Decrypted text: \t");*/
+        printf("Decrypted text: \t");
         uint32_t _benchmark_time_decryption = xtimer_now_usec();
         cipher_decrypt_cbc(&cipher, iv, output, total, decryptBuffer);
         _benchmark_time_decryption = (xtimer_now_usec() - _benchmark_time_decryption);
-        //od_hex_dump(decryptBuffer, AES_BLOCK_SIZE, 0);
-        uint32_t benchmarkResults[2];
-        benchmarkResults[0] = _benchmark_time_encryption;
-        benchmarkResults[1] = _benchmark_time_decryption;
-        printf(";%d;%u;%u\n", round, benchmarkResults[0], benchmarkResults[1]);
+        od_hex_dump(decryptBuffer, AES_BLOCK_SIZE, 0);
+        //uint32_t benchmarkResults[2];
+        //benchmarkResults[0] = _benchmark_time_encryption;
+        //benchmarkResults[1] = _benchmark_time_decryption;
+        //printf(";%d;%u;%u\n", round, benchmarkResults[0], benchmarkResults[1]);
         free(input);
         free(output);
         free(key);
