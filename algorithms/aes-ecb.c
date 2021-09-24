@@ -38,7 +38,7 @@ void executeAesEcb(int numberOfRounds, int keySize, size_t messageLength) {
         uint32_t benchmarkResults[2];
         benchmarkResults[0] = _benchmark_time_encryption;
         benchmarkResults[1] = _benchmark_time_decryption;
-        printf(";%d;%u;%u\n", round, benchmarkResults[0], benchmarkResults[1]);
+        printf(";%d;%lu;%lu\n", round, benchmarkResults[0], benchmarkResults[1]);
         free(input);
         free(output);
         free(decryptBuffer);

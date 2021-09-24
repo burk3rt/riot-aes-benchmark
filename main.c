@@ -7,8 +7,8 @@
 
 
 #define ROUNDS 1000
-#define MESSAGE_LENGTH 1024 // in BYTES
-#define KEY_SIZE 24 // in BYTES
+#define MESSAGE_LENGTH 128// in BYTES
+#define KEY_SIZE 16 // in BYTES
 #define ECB_MODE 1 // 0=OFF, 1=ON
 
 int main(void)
