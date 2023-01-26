@@ -5,7 +5,7 @@ APPLICATION = CRYPTBENCH
 BOARD ?= native
 
 #This is important! It tells the application where the RIOT-OS is
-RIOTBASE ?= $(CURDIR)/RIOT
+RIOTBASE ?= $(CURDIR)/../RIOT
 
 # Binds a directory to the build process and makes it available to RIOT
 BIN_DIRS += algorithms
@@ -15,7 +15,6 @@ DIST_FILES += Makefile
 
 AES_KEY_SIZE ?= 128 # Defines which key size is to be used. Can be overriden in the make command
 
-USEMODULE += shell_commands # RIOT SHELL COMMANDS
 USEMODULE += shell 			    # RIOT SHELL MODULE
 USEMODULE += od				      # Object Dump: Used to present the encryption/decryption. Should only be used for debugging
 USEMODULE += od_string		  # OD as String: Same as the od module

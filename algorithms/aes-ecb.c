@@ -4,6 +4,7 @@
 #include "aes-ecb.h"
 
 void executeAesEcb(int numberOfRounds, int keySize, size_t messageLength) {
+    printf(";Round;Encrypt(ms);Decrypt(ms)\n");
     for(int round = 1; round <= numberOfRounds; round++){
         uint8_t* input = malloc(messageLength);
         random_bytes(input, messageLength);
@@ -38,7 +39,7 @@ void executeAesEcb(int numberOfRounds, int keySize, size_t messageLength) {
         uint32_t benchmarkResults[2];
         benchmarkResults[0] = _benchmark_time_encryption;
         benchmarkResults[1] = _benchmark_time_decryption;
-        printf(";%d;%lu;%lu\n", round, benchmarkResults[0], benchmarkResults[1]);
+        printf(";%d;%u;%u\n", round, benchmarkResults[0], benchmarkResults[1]);
         free(input);
         free(output);
         free(decryptBuffer);
