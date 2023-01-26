@@ -36,7 +36,7 @@ void executeAesCtr(int numberOfRounds, int keySize, size_t messageLength){
         _benchmark_time_decryption = (xtimer_now_usec() - _benchmark_time_decryption);
 
 
-        printf(";%d;%u;%u\n", round, _benchmark_time_encryption, _benchmark_time_decryption);
+        printf(";%d;%lu;%lu\n", round, _benchmark_time_encryption, _benchmark_time_decryption);
         free(input);
         free(output);
         free(key);
