@@ -1,1 +1,4 @@
 bin/*
+
+!bin/microbit/CRYPTBENCH.elf
+!bin/**/CRYPTBENCH.elf
