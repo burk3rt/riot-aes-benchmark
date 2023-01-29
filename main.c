@@ -8,49 +8,45 @@
 #include "shell.h"
 
 
-#define ROUNDS 1000
 #define MESSAGE_LENGTH 2048 // in BYTES
-#define KEY_SIZE 24 // in BYTES
 
-int ecb_command_handler(int argc, char** argv) {
-    (void)argc;
-    (void)argv;
-    printf("Mode: ELECTRONIC CODEBOOK\n");
-    executeAesEcb(ROUNDS, KEY_SIZE, MESSAGE_LENGTH);
+void ecb_command_handler(uint16_t key_size, uint16_t rounds) {
+
+    printf("Mode: ELECTRONIC CODEBOOK - %u Bit, # of rounds: %u\n", key_size*8, rounds);
+    executeAesEcb(rounds, key_size, MESSAGE_LENGTH);
     printf("Benchmark done!\n");
-    return 0;
 }
 
-int cbc_command_handler(int argc, char** argv) {
-    (void)argc;
-    (void)argv;
-    printf("Mode: CIPHER BLOCKER CHAINING\n");
-    executeAesCbc(ROUNDS, KEY_SIZE, MESSAGE_LENGTH);
+void cbc_command_handler(uint16_t key_size, uint16_t rounds) {
+
+    printf("Mode: CIPHER BLOCKER CHAINING - %u Bit, # of rounds: %u\n", key_size*8, rounds);
+    executeAesCbc(rounds, key_size, MESSAGE_LENGTH);
     printf("Benchmark done!\n");
-    return 0;
 }
 
-int ctr_command_handler(int argc, char** argv) {
-    (void)argc;
-    (void)argv;
-    printf("Mode: COUNTER MODE\n");
-    executeAesCtr(ROUNDS, KEY_SIZE, MESSAGE_LENGTH);
+void ctr_command_handler(uint16_t key_size, uint16_t rounds) {
+
+    printf("Mode: COUNTER MODE - %u Bit, # of rounds: %u\n", key_size*8, rounds);
+    executeAesCtr(rounds, key_size, MESSAGE_LENGTH);
     printf("Benchmark done!\n");
-    return 0;
 }
+
+void executeAll(uint16_t key_size, uint16_t rounds){
+    if(key_size == 16){
+        ecb_command_handler(key_size, rounds);
+    }
+    cbc_command_handler(key_size, rounds);
+    ctr_command_handler(key_size, rounds);
+}
+
 
 int main(void)
 {
-     shell_command_t commands[] = {
-        { "ecb", "AES ECB Mode Benchmark", ecb_command_handler },
-        { "cbc", "AES CBC Mode Benchmark", cbc_command_handler },
-        { "ctr", "AES CTR Mode Benchmark", ctr_command_handler },
-        { NULL, NULL, NULL }
-    };
+    uint16_t rounds = 1000;
+    uint16_t key_size = 16; // In bytes, this must be changed in Makefile
 
-    char line_buf[SHELL_DEFAULT_BUFSIZE];
-    shell_run(commands, line_buf, SHELL_DEFAULT_BUFSIZE);
-    printf("Benchmark ready\nNUMBER OF ROUNDS: %d\nWORDLENGTH: %d BYTES\n", ROUNDS, MESSAGE_LENGTH);
-    printf("Benchmark done!\n");
+    executeAll(key_size, rounds);
+
+    printf("All Benchmarks done!\n");
     return 0;
 }

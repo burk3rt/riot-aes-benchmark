@@ -12,7 +12,7 @@ void executeAesCtr(int numberOfRounds, int keySize, size_t messageLength){
     for(int round = 1; round <= numberOfRounds; round++){
         uint8_t* input = malloc(messageLength);
         uint8_t* decryptBuffer = malloc(messageLength);
-        uint8_t* nonce = malloc(keySize);
+        uint8_t* nonce = malloc(16);
         random_bytes(input, messageLength);
         random_bytes(nonce, AES_BLOCK_SIZE);
         cipher_t cipher;
@@ -28,15 +28,15 @@ void executeAesCtr(int numberOfRounds, int keySize, size_t messageLength){
 
 
         uint32_t _benchmark_time_encryption = xtimer_now_usec();
-        cipher_encrypt_ctr(&cipher, nonce, 0, input, total_len, output);
+        cipher_encrypt_ctr(&cipher, nonce, 16, input, total_len, output);
         _benchmark_time_encryption = (xtimer_now_usec() - _benchmark_time_encryption);
 
         uint32_t _benchmark_time_decryption = xtimer_now_usec();
-        cipher_decrypt_ctr(&cipher, nonce, 0, output, total_len, decryptBuffer);
+        cipher_decrypt_ctr(&cipher, nonce, 16, output, total_len, decryptBuffer);
         _benchmark_time_decryption = (xtimer_now_usec() - _benchmark_time_decryption);
 
 
-        printf(";%d;%lu;%lu\n", round, _benchmark_time_encryption, _benchmark_time_decryption);
+        printf(";%d;%u;%u\n", round, _benchmark_time_encryption, _benchmark_time_decryption);
         free(input);
         free(output);
         free(key);
